@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import ch.qos.logback.core.model.Model;
 // import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestParam;
 
 // import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 // import com.fasterxml.jackson.databind.Module;
@@ -34,6 +35,26 @@ public class web {
     public String Product(Model model, @PathVariable(required = false) Integer id) {
         // Handle both cases
         return "views/product";
+    }
+
+    @GetMapping("/task1")
+    public String Task1(Model model) {
+        return "views/task1";
+    }
+
+    @GetMapping("/task2")
+    public String Task2(Model model) {
+        return "views/task2";
+    }
+
+    @GetMapping("/task3")
+    public String Task3(Model model) {
+        return "views/task3";
+    }
+
+    @GetMapping("/task4")
+    public String Task4(Model model) {
+        return "views/task4";
     }
 
 }

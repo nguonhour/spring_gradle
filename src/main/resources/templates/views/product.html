@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
+  <header th:replace="fragments/header :: header"></header>
+  <body class="w-full">
+    <div th:replace="fragments/navbar :: navbar"></div>
     <h1>Product Details</h1>
     <p>Product ID: <span th:text="${id}">1</span></p>
     <p>Product Name: <span th:text="${name}">Sample Product</span></p>
@@ -128,5 +125,8 @@
         </div>
       </div>
     </div>
+    <div th:replace="fragments/Signinform :: authentication-modal"></div>
+    <div th:replace="fragments/Createform :: authentication-modal-create"></div>
+    <footer th:replace="fragments/footer :: footer"></footer>
   </body>
 </html>

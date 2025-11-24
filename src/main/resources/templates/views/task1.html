@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <header th:replace="fragments/header :: header"></header>
+  <body class="w-full">
+    <div th:replace="fragments/navbar :: navbar"></div>
+
+    <!-- Main content with top padding to avoid navbar overlap -->
+    <main class="pt-20 pb-12 min-h-screen">
+      <h1>Task 1 Page</h1>
+      <p>This is the content for Task 1.</p>
+
+    </main>
+
+    <div th:replace="fragments/Signinform :: authentication-modal"></div>
+    <div th:replace="fragments/Createform :: authentication-modal-create"></div>
+
+    <footer th:replace="fragments/footer :: footer"></footer>
+  </body>
+</html>
