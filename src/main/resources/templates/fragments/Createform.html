@@ -1,6 +1,6 @@
 <div
-  th:fragment="authentication-modal"
-  id="authentication-modal"
+  th:fragment="authentication-modal-create"
+  id="authentication-modal-create"
   tabindex="-1"
   aria-hidden="true"
   class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
@@ -14,13 +14,11 @@
       <div
         class="flex items-center justify-between border-b border-default pb-4 md:pb-5"
       >
-        <h3 class="text-lg font-medium text-heading">
-          Sign in to our platform
-        </h3>
+        <h3 class="text-lg font-medium text-heading">Create an account</h3>
         <button
           type="button"
           class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
-          data-modal-hide="authentication-modal"
+          data-modal-hide="authentication-modal-create"
         >
           <svg
             class="w-5 h-5"
@@ -43,16 +41,16 @@
         </button>
       </div>
       <!-- Modal body -->
-      <form th:action="@{/save-product}" method="post" th:object="${productDTO}" enctype="multipart/form-data" class="pt-4 md:pt-6">
+      <form action="#" class="pt-4 md:pt-6">
         <div class="mb-4">
           <label
-            for="signin-email"
+            for="create-email"
             class="block mb-2.5 text-sm font-medium text-heading"
             >Your email</label
           >
           <input
             type="email"
-            id="signin-email"
+            id="create-email"
             name="email"
             class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
             placeholder="example@company.com"
@@ -60,16 +58,47 @@
             autocomplete="email"
           />
         </div>
+        <div class="mb-4">
+          <label
+            for="create-name"
+            class="block mb-2.5 text-sm font-medium text-heading"
+            >Your name</label
+          >
+          <input
+            type="text"
+            id="create-name"
+            name="name"
+            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+            placeholder="Your name"
+            required
+            autocomplete="name"
+          />
+        </div>
         <div>
           <label
-            for="signin-password"
+            for="create-password"
             class="block mb-2.5 text-sm font-medium text-heading"
             >Your password</label
           >
           <input
             type="password"
-            id="signin-password"
+            id="create-password"
             name="password"
+            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+            placeholder="•••••••••"
+            required
+            autocomplete="new-password"
+          />
+        </div>
+        <div>
+          <label
+            for="confirm-password"
+            class="block mb-2.5 text-sm font-medium text-heading"
+            >Your confirm-password</label
+          >
+          <input
+            type="password"
+            id="confirm-password"
             class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
             placeholder="•••••••••"
             required
@@ -79,39 +108,39 @@
         <div class="flex items-start my-6">
           <div class="flex items-center">
             <input
-              id="signin-checkbox-remember"
-              name="remember"
+              id="create-checkbox-terms"
+              name="terms"
               type="checkbox"
               value=""
               class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"
             />
             <label
-              for="signin-checkbox-remember"
+              for="create-checkbox-terms"
               class="ms-2 text-sm font-medium text-heading"
-              >Remember me</label
+              >I agree to terms</label
             >
           </div>
-          <a
+          <!-- <a
             href="#"
             class="ms-auto text-sm font-medium text-fg-brand hover:underline"
             >Lost Password?</a
-          >
+          > -->
         </div>
         <button
           type="submit"
           class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none w-full mb-3"
         >
-          Login to your account
+          Create account
         </button>
         <div class="text-sm font-medium text-body">
           Not registered?
           <a
-            data-modal-target="authentication-modal-create"
-            data-modal-toggle="authentication-modal-create"
-            data-modal-hide="authentication-modal"
+            data-modal-target="authentication-modal"
+            data-modal-toggle="authentication-modal"
+            data-modal-hide="authentication-modal-create"
             type="button"
             class="text-fg-brand hover:underline"
-            >Create account</a
+            >Sign in</a
           >
         </div>
       </form>
