@@ -1,36 +1,25 @@
 package test.example.test_spring_gradle.Routes;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import ch.qos.logback.core.model.Model;
-// import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestParam;
-
-// import com.fasterxml.jackson.annotation.JsonCreator.Mode;
-// import com.fasterxml.jackson.databind.Module;
+import org.springframework.ui.Model;
+import test.example.repository.ProductRepository;
 
 @Controller
 public class web {
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @GetMapping("/")
     public String home(Model model) {
+        model.addAttribute("products", productRepository.findAll());
+        model.addAttribute("product", new test.example.models.product());
         return "index";
     }
 
-    /**
-     * @param model
-     * @param name
-     * @param price
-     * @param id
-     * @return
-     */
-    // @GetMapping("/product/{id}")
-    // public String Product(Model model, @PathVariable Integer id) {
-    // // Fetch product from database using id
-    // return "views/product";
-    // }
     @GetMapping({ "/product", "/product/{id}" })
     public String Product(Model model, @PathVariable(required = false) Integer id) {
         // Handle both cases

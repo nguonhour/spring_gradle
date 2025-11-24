@@ -43,16 +43,17 @@
         </button>
       </div>
       <!-- Modal body -->
-      <form action="#" class="pt-4 md:pt-6">
+      <form th:action="@{/save-product}" method="post" th:object="${productDTO}" enctype="multipart/form-data" class="pt-4 md:pt-6">
         <div class="mb-4">
           <label
-            for="email"
+            for="signin-email"
             class="block mb-2.5 text-sm font-medium text-heading"
             >Your email</label
           >
           <input
             type="email"
-            id="email"
+            id="signin-email"
+            name="email"
             class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
             placeholder="example@company.com"
             required
@@ -61,13 +62,14 @@
         </div>
         <div>
           <label
-            for="password"
+            for="signin-password"
             class="block mb-2.5 text-sm font-medium text-heading"
             >Your password</label
           >
           <input
             type="password"
-            id="password"
+            id="signin-password"
+            name="password"
             class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
             placeholder="•••••••••"
             required
@@ -77,13 +79,14 @@
         <div class="flex items-start my-6">
           <div class="flex items-center">
             <input
-              id="checkbox-remember"
+              id="signin-checkbox-remember"
+              name="remember"
               type="checkbox"
               value=""
               class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"
             />
             <label
-              for="checkbox-remember"
+              for="signin-checkbox-remember"
               class="ms-2 text-sm font-medium text-heading"
               >Remember me</label
             >
