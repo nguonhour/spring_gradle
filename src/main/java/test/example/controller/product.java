@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 public class product {
     @Autowired
-    private test.example.repository.product productRepository;
+    private test.example.repository.ProductRepository productRepository;
 
-    @GetMapping("/products")
+    @GetMapping("/product/{id}")
     public String getProduct() {
-        return "Product endpoint is working!";
+        return "views/product";
     }
-    // public java.util.List<test.example.models.product> getAllProducts() {
-    // return productRepository.findAll();
-    // }
+    public java.util.List<test.example.models.product> getAllProducts() {
+    return productRepository.findAll();
+    }
 
 }
