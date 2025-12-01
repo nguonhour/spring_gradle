@@ -30,10 +30,21 @@ dependencies {
 	implementation 'org.flywaydb:flyway-mysql:11.17.0'
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.5.7'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.2.RELEASE'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
 	implementation 'org.springframework.boot:spring-boot-starter-actuator:3.5.7'
 	implementation 'org.springframework.boot:spring-boot-starter-validation:3.5.7'
+
+	implementation 'org.springframework.boot:spring-boot-starter-security:3.5.7'
+     
+	 // dev tools
+	developmentOnly 'org.springframework.boot:spring-boot-devtools:3.5.7'
+	
+
+	implementation 'io.jsonwebtoken:jjwt-api:0.13.0'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.13.0'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.13.0'
 
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
