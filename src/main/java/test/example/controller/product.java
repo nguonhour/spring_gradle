@@ -21,7 +21,6 @@ public class product {
     @GetMapping
     public String listProducts(Model model) {
         model.addAttribute("products", productRepository.findAll());
-        model.addAttribute("product", productRepository.findAll());
         model.addAttribute("product", new test.example.models.product());
         return "views/product";
     }

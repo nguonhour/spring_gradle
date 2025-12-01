@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - Spring Boot App</title>
+    <title>Register - Spring Boot App</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       body {
@@ -20,15 +20,32 @@
       <div class="bg-white shadow-2xl rounded-lg px-8 pt-6 pb-8 mb-4">
         <!-- Header -->
         <div class="mb-6 text-center">
-          <h2 class="text-3xl font-bold text-gray-800">Welcome Back</h2>
-          <p class="text-gray-600 mt-2">Sign in to your account</p>
+          <h2 class="text-3xl font-bold text-gray-800">Create Account</h2>
+          <p class="text-gray-600 mt-2">Sign up to get started</p>
         </div>
 
         <!-- Success/Error Messages -->
         <div id="message" class="hidden mb-4 p-4 rounded-lg"></div>
 
-        <!-- Login Form -->
-        <form id="loginForm">
+        <!-- Registration Form -->
+        <form id="registerForm">
+          <!-- Username Field -->
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="username"
+            >
+              Username
+            </label>
+            <input
+              class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500"
+              id="username"
+              type="text"
+              placeholder="Enter username"
+              required
+            />
+          </div>
+
           <!-- Email Field -->
           <div class="mb-4">
             <label
@@ -41,7 +58,7 @@
               class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500"
               id="email"
               type="email"
-              placeholder="Enter your email"
+              placeholder="Enter email"
               required
             />
           </div>
@@ -58,23 +75,9 @@
               class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500"
               id="password"
               type="password"
-              placeholder="Enter your password"
+              placeholder="Enter password"
               required
             />
-          </div>
-
-          <!-- Remember Me & Forgot Password -->
-          <div class="flex items-center justify-between mb-6">
-            <label class="flex items-center">
-              <input class="mr-2 leading-tight" type="checkbox" id="remember" />
-              <span class="text-sm text-gray-700">Remember me</span>
-            </label>
-            <a
-              class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-700"
-              href="#"
-            >
-              Forgot Password?
-            </a>
           </div>
 
           <!-- Submit Button -->
@@ -83,18 +86,18 @@
               class="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline transition duration-200"
               type="submit"
             >
-              Sign In
+              Register
             </button>
           </div>
 
-          <!-- Register Link -->
+          <!-- Login Link -->
           <div class="text-center">
-            <span class="text-gray-600">Don't have an account?</span>
+            <span class="text-gray-600">Already have an account?</span>
             <a
               class="font-bold text-blue-500 hover:text-blue-700"
-              href="/register"
+              href="/login"
             >
-              Sign Up
+              Sign In
             </a>
           </div>
         </form>
@@ -103,21 +106,22 @@
 
     <script>
       document
-        .getElementById("loginForm")
+        .getElementById("registerForm")
         .addEventListener("submit", async function (e) {
           e.preventDefault();
 
           const messageDiv = document.getElementById("message");
+          const username = document.getElementById("username").value;
           const email = document.getElementById("email").value;
           const password = document.getElementById("password").value;
 
           try {
-            const response = await fetch("/api/login", {
+            const response = await fetch("/api/register", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({ email, password }),
+              body: JSON.stringify({ username, email, password }),
             });
 
             const data = await response.json();
@@ -129,19 +133,20 @@
               // Show success message
               messageDiv.className =
                 "mb-4 p-4 rounded-lg bg-green-100 text-green-700";
-              messageDiv.textContent = "Login successful! Redirecting...";
+              messageDiv.textContent =
+                "Registration successful! Redirecting...";
               messageDiv.classList.remove("hidden");
 
-              // Redirect to product page after 1 second
+              // Redirect to login page after 1 second
               setTimeout(() => {
-                window.location.href = "/product";
+                window.location.href = "/login";
               }, 1000);
             } else {
               // Show error message
               messageDiv.className =
                 "mb-4 p-4 rounded-lg bg-red-100 text-red-700";
               messageDiv.textContent =
-                data.message || "Invalid email or password.";
+                data.message || "Registration failed. Please try again.";
               messageDiv.classList.remove("hidden");
             }
           } catch (error) {
