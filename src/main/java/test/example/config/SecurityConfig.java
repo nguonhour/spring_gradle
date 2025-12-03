@@ -57,7 +57,8 @@ public class SecurityConfig {
                                 "/css/**", "/js/**",
                                 "/images/**")
                         .permitAll()
-                        .requestMatchers("/product", "/product/**", "/task*", "/products" , "/products/**").authenticated()
+                        .requestMatchers("/product", "/product/**", "/task*").authenticated()
+                        .requestMatchers("/products", "/products/**").permitAll()
                         .requestMatchers("/api/**").authenticated()
                         .anyRequest().permitAll())
                 .exceptionHandling(exception -> exception

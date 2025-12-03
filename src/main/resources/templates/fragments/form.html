@@ -106,7 +106,7 @@
           <span th:text="${product != null && product.id != null} ? 'Update Product' : 'Create Product'">Create Product</span>
         </button>
         <a
-          th:href="@{/}"
+          th:href="${product != null && product.id != null} ? @{/products} : @{/}"
           class="text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:ring-gray-200 shadow-sm font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none text-center"
         >
           Cancel
