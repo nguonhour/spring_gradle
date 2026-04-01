@@ -21,7 +21,6 @@ public class product {
     @GetMapping
     public String listProducts(Model model) {
         model.addAttribute("products", productRepository.findAll());
-        model.addAttribute("product", productRepository.findAll());
         model.addAttribute("product", new test.example.models.product());
         return "views/product";
     }
@@ -71,9 +70,6 @@ public class product {
             BindingResult result,
             RedirectAttributes redirectAttributes,
             Model model) {
-        if (result.hasErrors()) {
-            return "index";
-        }
 
         test.example.models.product existingProduct = productRepository.findById(id)
                 .orElse(null);
@@ -81,6 +77,12 @@ public class product {
         if (existingProduct == null) {
             redirectAttributes.addFlashAttribute("errorMessage", "Product not found!");
             return "redirect:/products";
+        }
+
+        if (result.hasErrors()) {
+            model.addAttribute("product", existingProduct);
+            model.addAttribute("products", productRepository.findAll());
+            return "views/product";
         }
 
         existingProduct.setName(product.getName());

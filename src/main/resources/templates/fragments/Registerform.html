@@ -14,7 +14,9 @@
       <div
         class="flex items-center justify-between border-b border-default pb-4 md:pb-5"
       >
-        <h3 class="text-lg font-medium text-heading">Create an account</h3>
+        <h3 class="text-lg font-medium text-heading">
+          Create an account
+        </h3>
         <button
           type="button"
           class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
@@ -44,13 +46,13 @@
       <form id="register-modal-form" class="pt-4 md:pt-6">
         <div class="mb-4">
           <label
-            for="create-username"
+            for="register-username"
             class="block mb-2.5 text-sm font-medium text-heading"
             >Username</label
           >
           <input
             type="text"
-            id="create-username"
+            id="register-username"
             name="username"
             class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
             placeholder="johndoe"
@@ -60,13 +62,13 @@
         </div>
         <div class="mb-4">
           <label
-            for="create-email"
+            for="register-email"
             class="block mb-2.5 text-sm font-medium text-heading"
             >Your email</label
           >
           <input
             type="email"
-            id="create-email"
+            id="register-email"
             name="email"
             class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
             placeholder="example@company.com"
@@ -76,13 +78,13 @@
         </div>
         <div class="mb-6">
           <label
-            for="create-password"
+            for="register-password"
             class="block mb-2.5 text-sm font-medium text-heading"
-            >Your password</label
+            >Password</label
           >
           <input
             type="password"
-            id="create-password"
+            id="register-password"
             name="password"
             class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
             placeholder="•••••••••"
@@ -114,48 +116,43 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const registerForm = document.getElementById('register-modal-form');
-    if (registerForm) {
-        registerForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const messageDiv = document.getElementById('register-message');
-            const username = document.getElementById('create-username').value;
-            const email = document.getElementById('create-email').value;
-            const password = document.getElementById('create-password').value;
+document.getElementById('register-modal-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const messageDiv = document.getElementById('register-message');
+    const username = document.getElementById('register-username').value;
+    const email = document.getElementById('register-email').value;
+    const password = document.getElementById('register-password').value;
 
-            try {
-                const response = await fetch('/api/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ username, email, password })
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    localStorage.setItem('token', data.token);
-                    messageDiv.className = 'mb-3 p-2.5 rounded-base text-sm bg-green-100 text-green-700';
-                    messageDiv.textContent = 'Registration successful! Redirecting...';
-                    messageDiv.classList.remove('hidden');
-                    
-                    setTimeout(() => {
-                        window.location.href = '/products';
-                    }, 1000);
-                } else {
-                    messageDiv.className = 'mb-3 p-2.5 rounded-base text-sm bg-red-100 text-red-700';
-                    messageDiv.textContent = data.message || 'Registration failed. Please try again.';
-                    messageDiv.classList.remove('hidden');
-                }
-            } catch (error) {
-                messageDiv.className = 'mb-3 p-2.5 rounded-base text-sm bg-red-100 text-red-700';
-                messageDiv.textContent = 'An error occurred. Please try again.';
-                messageDiv.classList.remove('hidden');
-            }
+    try {
+        const response = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, email, password })
         });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            localStorage.setItem('token', data.token);
+            messageDiv.className = 'mb-3 p-2.5 rounded-base text-sm bg-green-100 text-green-700';
+            messageDiv.textContent = 'Registration successful! Redirecting...';
+            messageDiv.classList.remove('hidden');
+            
+            setTimeout(() => {
+                window.location.href = '/products';
+            }, 1000);
+        } else {
+            messageDiv.className = 'mb-3 p-2.5 rounded-base text-sm bg-red-100 text-red-700';
+            messageDiv.textContent = data.message || 'Registration failed. Please try again.';
+            messageDiv.classList.remove('hidden');
+        }
+    } catch (error) {
+        messageDiv.className = 'mb-3 p-2.5 rounded-base text-sm bg-red-100 text-red-700';
+        messageDiv.textContent = 'An error occurred. Please try again.';
+        messageDiv.classList.remove('hidden');
     }
 });
 </script>

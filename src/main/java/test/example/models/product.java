@@ -34,6 +34,9 @@ public class product {
     @Column(name = "image_path")
     private String imagePath;
     
+    @Column(name = "user_id")
+    private Long userId;
+    
     @CreationTimestamp
     private LocalDateTime createdAt;
     
@@ -107,4 +110,11 @@ public class product {
         this.updatedAt = updatedAt;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }

@@ -46,4 +46,14 @@ public class web {
         return "views/task4";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "auth/signIn";
+    }
+
+    @GetMapping("/register")
+    public String register() {
+        return "auth/register";
+    }
+
 }
